@@ -21,7 +21,8 @@ import javax.swing.text.DefaultCaret;
 
 public class AnimalUI {
 	private boolean player;
-	
+	Animal pl1 = new Animal("Player 1");
+	Animal pl2 = new Animal("Player 2");
 	String toPrint = "";
 	JTextArea combatLog = new JTextArea(10,10);
 	JTextField winnerTextField = new JTextField();
@@ -38,13 +39,9 @@ public class AnimalUI {
 	final JButton p2Move2Button = new JButton("2");
 	final JButton p2Move3Button = new JButton("3");
 	final JButton p2Move4Button = new JButton("4");
-	private String nm1;
-	private String nm2;
-	Animal pl1 = new Animal(nm1);
-	Animal pl2 = new Animal(nm2);
-  public AnimalUI(String name1, String name2) {
-	  	nm1 = name1;
-	  	nm2 = name2;
+
+
+  public AnimalUI(String playerName1, String playerName2) {
 		final JFrame frameMain = new JFrame("Animal Wars");
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -58,7 +55,7 @@ public class AnimalUI {
 		});
 
 		//Player1 label
-		JLabel p1Label = new JLabel(nm1, SwingConstants.CENTER);
+		JLabel p1Label = new JLabel(playerName1, SwingConstants.CENTER);
 		c.gridx=0;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -74,7 +71,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT " + nm1 + " TURN!");
+					winnerTextField.setText("NOT P1 TURN!");
 				setStats();
 			}
 		});
@@ -93,7 +90,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT " + nm1 + " TURN!");
+					winnerTextField.setText("NOT P1 TURN!");
 				setStats();
 			}
 		});
@@ -112,7 +109,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT " + nm1 + " TURN!");
+					winnerTextField.setText("NOT P1 TURN!");
 				setStats();
 			}
 		});
@@ -131,7 +128,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT " + nm1 + " TURN!");
+					winnerTextField.setText("NOT P1 TURN!");
 				setStats();
 			}
 		});
@@ -163,7 +160,7 @@ public class AnimalUI {
 		frameMain.add(winnerButton, c);
 
 		//Player2 label
-		JLabel p2Label = new JLabel(nm2, SwingConstants.CENTER);
+		JLabel p2Label = new JLabel(playerName2, SwingConstants.CENTER);
 		c.gridx=2;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -179,7 +176,7 @@ public class AnimalUI {
 					turn = true;
 					
 				} else
-					winnerTextField.setText("NOT " + nm2 + " TURN!");
+					winnerTextField.setText("NOT P2 TURN!");
 				setStats();
 			}
 		});
@@ -197,7 +194,7 @@ public class AnimalUI {
 					combatLog.setText(combatLog.getText() + "\n" + toPrint);
 					turn = true;
 				} else
-					winnerTextField.setText("NOT " + nm2 + " TURN!");
+					winnerTextField.setText("NOT P2 TURN!");
 				setStats();
 			}
 		});
@@ -215,7 +212,7 @@ public class AnimalUI {
 					combatLog.setText(combatLog.getText() + "\n" + toPrint);
 					turn = true;
 				} else
-					winnerTextField.setText("NOT " + nm2 + " TURN!");
+					winnerTextField.setText("NOT P2 TURN!");
 				setStats();
 			}
 		});
@@ -233,7 +230,7 @@ public class AnimalUI {
 					combatLog.setText(combatLog.getText() + "\n" + toPrint);
 					turn = true;setStats();
 				} else
-					winnerTextField.setText("NOT " + nm2 + " TURN!");
+					winnerTextField.setText("NOT P2 TURN!");
 				setStats();
 			}
 		});
@@ -264,8 +261,8 @@ public class AnimalUI {
 
 		//Player Animal selection radio button
         ButtonGroup playerRadioButtonGroup = new ButtonGroup();
-        final JRadioButton player1RadioButton = new JRadioButton(nm1);
-        final JRadioButton player2RadioButton = new JRadioButton(nm2);
+        final JRadioButton player1RadioButton = new JRadioButton("Player 1");
+        final JRadioButton player2RadioButton = new JRadioButton("Player 2");
         player1RadioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	player = true;
@@ -327,130 +324,123 @@ public class AnimalUI {
 		// --- LIST OF POKEMON ---
 
 		//Animal Placeholder Button
-		JButton pokemonButton1 = new JButton("Aardvark");
-		pokemonButton1.addActionListener(new ActionListener() {
+		JButton animalButton1 = new JButton("Aardvark");
+		animalButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new Aardvark(nm1);
+					pl1 = new Aardvark("Player 1");
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);  		player1Info.setText(pl1.listStatus());
-
+					engageP1Buttons(pl1);
 				}
 				if (!player){
-					pl2 = new Aardvark(nm2);
+					pl2 = new Aardvark("Player 2");
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);  		player2Info.setText(pl2.listStatus());
-
+					engageP2Buttons(pl2);
 				}
 			}
 		});
 		c.gridx = 0;
 		c.gridy = 9;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton1, c);
+		frameMain.add(animalButton1, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton2 = new JButton("Narwhal");
-		pokemonButton2.addActionListener(new ActionListener() {
+		JButton animalButton2 = new JButton("Narwhal");
+		animalButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new Narwhal(nm1);
+					pl1 = new Narwhal("Player 1");
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);  		player1Info.setText(pl1.listStatus());
-
+					engageP1Buttons(pl1);
 				}
 				if (!player){
-					pl2 = new Narwhal(nm2);
+					pl2 = new Narwhal("Player 2");
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);player2Info.setText(pl2.listStatus());
+					engageP2Buttons(pl2);
 				}
 			}
 		});
 		c.gridx = 1;
 		c.gridy = 9;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton2, c);
+		frameMain.add(animalButton2, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton3 = new JButton("Ocelot");
-		pokemonButton3.addActionListener(new ActionListener() {
+		JButton animalButton3 = new JButton("Ocelot");
+		animalButton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new Ocelot(nm1);
+					pl1 = new Ocelot("Player 1");
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);  player1Info.setText(pl1.listStatus());
-
+					engageP1Buttons(pl1);
 				}
 				if (!player){
-					pl2 = new Ocelot(nm2);
+					pl2 = new Ocelot("Player 2");
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);player2Info.setText(pl2.listStatus());
+					engageP2Buttons(pl2);
 				}
 			}
 		});
 		c.gridx = 2;
 		c.gridy = 9;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton3, c);
+		frameMain.add(animalButton3, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton4 = new JButton("Scimitar Oryx");
-		pokemonButton4.addActionListener(new ActionListener() {
+		JButton animalButton4 = new JButton("Scimitar Oryx");
+		animalButton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new ScimitarOryx(nm1);
+					pl1 = new ScimitarOryx("Player 1");
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);  	player1Info.setText(pl1.listStatus());
-
+					engageP1Buttons(pl1);
 				}
 				if (!player){
-					pl2 = new ScimitarOryx(nm2);
+					pl2 = new ScimitarOryx("Player 2");
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);player2Info.setText(pl2.listStatus());
+					engageP2Buttons(pl2);
 				}
 			}
 		});
 		c.gridx = 0;
 		c.gridy = 10;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton4, c);
+		frameMain.add(animalButton4, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton5 = new JButton("Three Toed Sloth");
-		pokemonButton5.addActionListener(new ActionListener() {
+		JButton animalButton5 = new JButton("Three Toed Sloth");
+		animalButton5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new ThreeToedSloth(nm1);
+					pl1 = new ThreeToedSloth("Player 1");
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);  	player1Info.setText(pl1.listStatus());
-
+					engageP1Buttons(pl1);
 				}
 				if (!player){
-					pl2 = new ThreeToedSloth(nm2);
+					pl2 = new ThreeToedSloth("Player 2");
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);  	player2Info.setText(pl2.listStatus());
-
+					engageP2Buttons(pl2);
 				}
 			}
 		});
 		c.gridx = 1;
 		c.gridy = 10;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton5, c);
+		frameMain.add(animalButton5, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton6 = new JButton("placeholder6");
-		pokemonButton6.addActionListener(new ActionListener() {
+		JButton animalButton6 = new JButton("placeholder6");
+		animalButton6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
@@ -458,11 +448,11 @@ public class AnimalUI {
 		c.gridx = 2;
 		c.gridy = 10;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton6, c);
+		frameMain.add(animalButton6, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton7 = new JButton("placeholder7");
-		pokemonButton7.addActionListener(new ActionListener() {
+		JButton animalButton7 = new JButton("placeholder7");
+		animalButton7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
@@ -470,11 +460,11 @@ public class AnimalUI {
 		c.gridx = 0;
 		c.gridy = 11;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton7, c);
+		frameMain.add(animalButton7, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton8 = new JButton("placeholder8");
-		pokemonButton8.addActionListener(new ActionListener() {
+		JButton animalButton8 = new JButton("placeholder8");
+		animalButton8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
@@ -482,11 +472,11 @@ public class AnimalUI {
 		c.gridx = 1;
 		c.gridy = 11;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton8, c);
+		frameMain.add(animalButton8, c);
 
 		//Animal Placeholder Button
-		JButton pokemonButton9 = new JButton("placeholder9");
-		pokemonButton9.addActionListener(new ActionListener() {
+		JButton animalButton9 = new JButton("placeholder9");
+		animalButton9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
@@ -494,7 +484,7 @@ public class AnimalUI {
 		c.gridx = 2;
 		c.gridy = 11;
 		c.fill = GridBagConstraints.HORIZONTAL; 
-		frameMain.add(pokemonButton9, c);
+		frameMain.add(animalButton9, c);
 		
 		frameMain.setSize(400,750);
 		frameMain.setSize(450,750);
@@ -525,15 +515,10 @@ public class AnimalUI {
   	public void getWinner(){
   		if (check() && pl2.getHealth() < 0){
   			endGame();
-  			winnerTextField.setText(nm2 + " Died");
-  			pl2.health = 0;
-  	  		player2Info.setText(pl2.listStatus());
-
+  			winnerTextField.setText("Player 2 Died");
   		} else if (check() && pl1.getHealth() < 0){
   			endGame();
-  			winnerTextField.setText(nm1 + " Died");
-  			pl1.health = 0;
-  	  		player1Info.setText(pl1.listStatus());
+  			winnerTextField.setText("Player 1 Died");
   		}
 
   	}
