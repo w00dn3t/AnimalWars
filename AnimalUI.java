@@ -41,7 +41,7 @@ public class AnimalUI {
 	final JButton p2Move4Button = new JButton("4");
 
 
-  public AnimalUI() {
+  public AnimalUI(String playerName1, String playerName2) {
 		final JFrame frameMain = new JFrame("Animal Wars");
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -55,7 +55,7 @@ public class AnimalUI {
 		});
 
 		//Player1 label
-		JLabel p1Label = new JLabel("Player 1", SwingConstants.CENTER);
+		JLabel p1Label = new JLabel(playerName1, SwingConstants.CENTER);
 		c.gridx=0;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -160,7 +160,7 @@ public class AnimalUI {
 		frameMain.add(winnerButton, c);
 
 		//Player2 label
-		JLabel p2Label = new JLabel("Player 2", SwingConstants.CENTER);
+		JLabel p2Label = new JLabel(playerName2, SwingConstants.CENTER);
 		c.gridx=2;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
