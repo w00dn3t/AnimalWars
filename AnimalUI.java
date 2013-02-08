@@ -21,8 +21,7 @@ import javax.swing.text.DefaultCaret;
 
 public class AnimalUI {
 	private boolean player;
-	Animal pl1 = new Animal("Player 1");
-	Animal pl2 = new Animal("Player 2");
+	
 	String toPrint = "";
 	JTextArea combatLog = new JTextArea(10,10);
 	JTextField winnerTextField = new JTextField();
@@ -39,9 +38,13 @@ public class AnimalUI {
 	final JButton p2Move2Button = new JButton("2");
 	final JButton p2Move3Button = new JButton("3");
 	final JButton p2Move4Button = new JButton("4");
-
-
-  public AnimalUI(String playerName1, String playerName2) {
+	private String nm1;
+	private String nm2;
+	Animal pl1 = new Animal(nm1);
+	Animal pl2 = new Animal(nm2);
+  public AnimalUI(String name1, String name2) {
+	  	nm1 = name1;
+	  	nm2 = name2;
 		final JFrame frameMain = new JFrame("Animal Wars");
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -55,7 +58,7 @@ public class AnimalUI {
 		});
 
 		//Player1 label
-		JLabel p1Label = new JLabel(playerName1, SwingConstants.CENTER);
+		JLabel p1Label = new JLabel(nm1, SwingConstants.CENTER);
 		c.gridx=0;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -71,7 +74,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT P1 TURN!");
+					winnerTextField.setText("NOT " + nm1 + " TURN!");
 				setStats();
 			}
 		});
@@ -90,7 +93,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT P1 TURN!");
+					winnerTextField.setText("NOT " + nm1 + " TURN!");
 				setStats();
 			}
 		});
@@ -109,7 +112,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT P1 TURN!");
+					winnerTextField.setText("NOT " + nm1 + " TURN!");
 				setStats();
 			}
 		});
@@ -128,7 +131,7 @@ public class AnimalUI {
 					combatLog.setText(toPrint);
 					turn = false;
 				} else
-					winnerTextField.setText("NOT P1 TURN!");
+					winnerTextField.setText("NOT " + nm1 + " TURN!");
 				setStats();
 			}
 		});
@@ -160,7 +163,7 @@ public class AnimalUI {
 		frameMain.add(winnerButton, c);
 
 		//Player2 label
-		JLabel p2Label = new JLabel(playerName2, SwingConstants.CENTER);
+		JLabel p2Label = new JLabel(nm2, SwingConstants.CENTER);
 		c.gridx=2;
 		c.gridy=0;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -176,7 +179,7 @@ public class AnimalUI {
 					turn = true;
 					
 				} else
-					winnerTextField.setText("NOT P2 TURN!");
+					winnerTextField.setText("NOT " + nm2 + " TURN!");
 				setStats();
 			}
 		});
@@ -194,7 +197,7 @@ public class AnimalUI {
 					combatLog.setText(combatLog.getText() + "\n" + toPrint);
 					turn = true;
 				} else
-					winnerTextField.setText("NOT P2 TURN!");
+					winnerTextField.setText("NOT " + nm2 + " TURN!");
 				setStats();
 			}
 		});
@@ -212,7 +215,7 @@ public class AnimalUI {
 					combatLog.setText(combatLog.getText() + "\n" + toPrint);
 					turn = true;
 				} else
-					winnerTextField.setText("NOT P2 TURN!");
+					winnerTextField.setText("NOT " + nm2 + " TURN!");
 				setStats();
 			}
 		});
@@ -230,7 +233,7 @@ public class AnimalUI {
 					combatLog.setText(combatLog.getText() + "\n" + toPrint);
 					turn = true;setStats();
 				} else
-					winnerTextField.setText("NOT P2 TURN!");
+					winnerTextField.setText("NOT " + nm2 + " TURN!");
 				setStats();
 			}
 		});
@@ -261,8 +264,8 @@ public class AnimalUI {
 
 		//Player Animal selection radio button
         ButtonGroup playerRadioButtonGroup = new ButtonGroup();
-        final JRadioButton player1RadioButton = new JRadioButton("Player 1");
-        final JRadioButton player2RadioButton = new JRadioButton("Player 2");
+        final JRadioButton player1RadioButton = new JRadioButton(nm1);
+        final JRadioButton player2RadioButton = new JRadioButton(nm2);
         player1RadioButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	player = true;
@@ -328,16 +331,18 @@ public class AnimalUI {
 		pokemonButton1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new Aardvark("Player 1");
+					pl1 = new Aardvark(nm1);
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);
+					engageP1Buttons(pl1);  		player1Info.setText(pl1.listStatus());
+
 				}
 				if (!player){
-					pl2 = new Aardvark("Player 2");
+					pl2 = new Aardvark(nm2);
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);
+					engageP2Buttons(pl2);  		player2Info.setText(pl2.listStatus());
+
 				}
 			}
 		});
@@ -351,16 +356,17 @@ public class AnimalUI {
 		pokemonButton2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new Narwhal("Player 1");
+					pl1 = new Narwhal(nm1);
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);
+					engageP1Buttons(pl1);  		player1Info.setText(pl1.listStatus());
+
 				}
 				if (!player){
-					pl2 = new Narwhal("Player 2");
+					pl2 = new Narwhal(nm2);
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);
+					engageP2Buttons(pl2);player2Info.setText(pl2.listStatus());
 				}
 			}
 		});
@@ -374,16 +380,17 @@ public class AnimalUI {
 		pokemonButton3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new Ocelot("Player 1");
+					pl1 = new Ocelot(nm1);
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);
+					engageP1Buttons(pl1);  player1Info.setText(pl1.listStatus());
+
 				}
 				if (!player){
-					pl2 = new Ocelot("Player 2");
+					pl2 = new Ocelot(nm2);
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);
+					engageP2Buttons(pl2);player2Info.setText(pl2.listStatus());
 				}
 			}
 		});
@@ -397,16 +404,17 @@ public class AnimalUI {
 		pokemonButton4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new ScimitarOryx("Player 1");
+					pl1 = new ScimitarOryx(nm1);
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);
+					engageP1Buttons(pl1);  	player1Info.setText(pl1.listStatus());
+
 				}
 				if (!player){
-					pl2 = new ScimitarOryx("Player 2");
+					pl2 = new ScimitarOryx(nm2);
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);
+					engageP2Buttons(pl2);player2Info.setText(pl2.listStatus());
 				}
 			}
 		});
@@ -420,16 +428,18 @@ public class AnimalUI {
 		pokemonButton5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (player){
-					pl1 = new ThreeToedSloth("Player 1");
+					pl1 = new ThreeToedSloth(nm1);
 					player1RadioButton.setEnabled(false);
 					player1SelectedTextField.setText(pl1.getType());
-					engageP1Buttons(pl1);
+					engageP1Buttons(pl1);  	player1Info.setText(pl1.listStatus());
+
 				}
 				if (!player){
-					pl2 = new ThreeToedSloth("Player 2");
+					pl2 = new ThreeToedSloth(nm2);
 					player2RadioButton.setEnabled(false);
 					player2SelectedTextField.setText(pl2.getType());
-					engageP2Buttons(pl2);
+					engageP2Buttons(pl2);  	player2Info.setText(pl2.listStatus());
+
 				}
 			}
 		});
@@ -513,10 +523,15 @@ public class AnimalUI {
   	public void getWinner(){
   		if (check() && pl2.getHealth() < 0){
   			endGame();
-  			winnerTextField.setText("Player 2 Died");
+  			winnerTextField.setText(nm2 + " Died");
+  			pl2.health = 0;
+  	  		player2Info.setText(pl2.listStatus());
+
   		} else if (check() && pl1.getHealth() < 0){
   			endGame();
-  			winnerTextField.setText("Player 1 Died");
+  			winnerTextField.setText(nm1 + " Died");
+  			pl1.health = 0;
+  	  		player1Info.setText(pl1.listStatus());
   		}
 
   	}
