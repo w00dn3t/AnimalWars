@@ -496,6 +496,8 @@ public class AnimalUI {
 		c.fill = GridBagConstraints.HORIZONTAL; 
 		frameMain.add(pokemonButton9, c);
 		
+		frameMain.setSize(400,750);
+		frameMain.setSize(450,750);
 	}
   	public void setStats(){
   		player1Info.setText(pl1.listStatus());
