@@ -11,6 +11,9 @@ public class ScimitarOryx extends Animal{
 
 
 	}
+	public ScimitarOryx(String name, int parseInt, int parseInt2, int parseInt3) {
+		super(name, "Scimitar Oryx",  parseInt, parseInt2, parseInt3);
+	}
 	public String listAbil(int i){
 		return abilList[i];
 	}
