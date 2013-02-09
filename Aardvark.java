@@ -11,6 +11,11 @@ public class Aardvark extends Animal{
 
 
 	}
+	public Aardvark(String name, int str, int agil, int health) {
+		super(name, "Aardvark", str, agil, health);
+
+
+	}
 	public String listAbil(int i){
 		return abilList[i];
 	}
