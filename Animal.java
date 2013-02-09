@@ -64,7 +64,7 @@ public class Animal {
 		return name + "'s Agility was raised to " + agil;
 	}
 	public String defAbilTwo(Animal enemy){
-		health += rhealth * 0.1;
+		health += getRhealth() * 0.1;
 		return name + " recovered 10% Health, it is now  " + health;
 	}
 	
@@ -116,5 +116,21 @@ public class Animal {
 		for (String x: abilList)
 			temp += x + ", ";
 		return temp;
+	}
+	public ArrayList<String> statList(){
+		//Returns a list
+		//0 being Type
+		//1 being Name
+		//2 being Strength
+		//3 being Agility
+		ArrayList<String> list = new ArrayList();
+		list.add(getType());
+		list.add(getName());
+		list.add(Integer.toString(getStr()));
+		list.add(Integer.toString(getAgil()));
+		return list;
+	}
+	public int getRhealth() {
+		return rhealth;
 	}
 }
