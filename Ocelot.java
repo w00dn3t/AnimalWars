@@ -1,20 +1,44 @@
 import java.util.ArrayList;
 
-public class ThreeToedSloth extends Animal{
-	public String[] abilList = {"Normal Strike", "Drop", "Climb", "Recuperate"};
-	private int heightCounter = 0;
 
-	public ThreeToedSloth(String name) {
-		super(name, "Three Toed Sloth", 4, 0, 110);
-		
+public class Ocelot extends Animal{
+	public String[] abilList = {"Cat Scratch", "Deep Cut", "Tense", "Recuperate"};
+	private int bleedCounter = 0;
+	private int addStrikes = 0;
+
+	public Ocelot(String name) {
+		super(name, "Ocelot", 15, 20, 75);
 
 	}
-	public ThreeToedSloth(String name, int parseInt, int parseInt2, int parseInt3) {
-		super(name, "Three Toed Sloth", parseInt, parseInt2, parseInt3);
+	public Ocelot(String name, int parseInt, int parseInt2, int parseInt3) {
+		super(name, "Ocelot", parseInt, parseInt2, parseInt3);
 	}
 	public String listAbil(int i){
 		return abilList[i];
 	}
+	public String offAbilOne(Animal enemy){
+		String temp = "";
+		int strikes = 2 + addStrikes;
+		addStrikes = 0;
+		int preDmg;
+		for(int i = 1; i <= strikes; i++){
+			preDmg = str*(rdzr()/2);
+			if (cth(enemy)){
+				enemy.health -= preDmg;
+				temp += name + "'s strike number " + i + " strikes for " + preDmg + " damage!\n"; 
+			}else{
+				temp += "Strike number " + i + " misses!\n";
+			}
+		}
+		return temp;
+	}
+
+	public String defAbilOne(Animal enemy){
+		addStrikes++;
+		this.agil += 5;
+		return this.name + " tenses up!\nNext Cat Scratch will perform an addional strike!\nAgility is now " + this.getAgil() + "!";
+	}
+
 	public String listAbil(){
 		String temp = getName() + "'s abilities in order:\n";
 		int i = 10;
@@ -23,25 +47,6 @@ public class ThreeToedSloth extends Animal{
 			i += 10;
 		}
 		return temp;
-	}
-	
-	public String offAbilTwo(Animal enemy){
-		int preDmg;
-		if(heightCounter == 0){
-			preDmg = 7;
-		}else{
-			preDmg = 10 * heightCounter;
-		}
-		this.agil -= 10 * heightCounter;
-		heightCounter = 0;
-		enemy.health -= preDmg;
-		return name + " falls from the trees for " + preDmg + " damage!\nIt's agility returns to " + this.getAgil(); 
-	}
-	
-	public String defAbilOne(Animal enemy){
-		this.agil += 10;
-		heightCounter++;
-		return "The Sloth climbs it's way higher into the trees!\nIt's now " + heightCounter * 10 +" meters up!";
 	}
 
 }
