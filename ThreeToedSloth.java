@@ -9,6 +9,9 @@ public class ThreeToedSloth extends Animal{
 		
 
 	}
+	public ThreeToedSloth(String name, int parseInt, int parseInt2, int parseInt3) {
+		super(name, "Three Toed Sloth", parseInt, parseInt2, parseInt3);
+	}
 	public String listAbil(int i){
 		return abilList[i];
 	}
