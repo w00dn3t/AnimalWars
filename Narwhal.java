@@ -11,6 +11,9 @@ public class Narwhal extends Animal{
 	
 
 	}
+	public Narwhal(String name, int parseInt, int parseInt2, int parseInt3) {
+		super(name, "Narwhal", parseInt, parseInt2, parseInt3);
+	}
 	public String listAbil(int i){
 		return abilList[i];
 	}
